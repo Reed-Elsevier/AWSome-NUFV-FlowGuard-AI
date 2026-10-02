@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  flowguard:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - AI_PROVIDER=${AI_PROVIDER:-anthropic}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      - AI_MODEL=${AI_MODEL:-}
+      - DATA_ROOT=/app/data
+    volumes:
+      # Mount data volume into container so proprietary datasets remain on host
+      - ./data:/app/data:ro
+    restart: unless-stopped
