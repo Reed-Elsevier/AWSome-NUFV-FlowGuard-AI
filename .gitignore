@@ -6,7 +6,7 @@
 credentials
 
 # REPH Operational Data & Raw datasets
-data/
+# data/
 datasets/
 *.parquet
 *.csv
